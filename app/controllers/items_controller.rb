@@ -17,13 +17,11 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
 
-    respond_to do |format|
-      if @item.save
-        # render json: @item
-        format.json { render :show, status: :created, location: @item }
-      else
-        format.json { render json: @item.errors, status: :unprocessable_entity }
-      end
+    if @item.save
+      # render json: @item
+      format.json { render :show, status: :created, location: @item }
+    else
+      format.json { render json: @item.errors, status: :unprocessable_entity }
     end
   end
 
@@ -50,7 +48,7 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:name, :description, :price, :photo, :user_id)
+    params.require(:item).permit(:name, :description, :price, :photo, :user_id, :specs)
   end
 
   # Use callbacks to share common setup or constraints between actions.
