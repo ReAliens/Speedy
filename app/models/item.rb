@@ -4,7 +4,7 @@ class Item < ApplicationRecord
 
   validates :name, presence: true, length: { minimum: 3, maximum: 20 }
   validates :photo, presence: true
-  validates :specs, presence: true
-  validates :description, presence: true
+  validates :specs, presence: true, length: { minimum: 3, maximum: 100 }
+  validates :description, presence: true, length: { minimum: 3, maximum: 200 }
   validates :price, presence: true, comparison: { greater_than: 0 }
 end
