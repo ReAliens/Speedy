@@ -1,0 +1,2 @@
+class ReservedsController < ApplicationController
+end
