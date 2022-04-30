@@ -1,6 +1,4 @@
 class ItemsController < ApplicationController
-  # before_action :set_item, only: %i[show edit update destroy]
-
   def index
     @items = Item.all
     render json: @items
@@ -18,7 +16,6 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
 
     if @item.save
-      # render json: @item
       format.json { render :show, status: :created, location: @item }
     else
       format.json { render json: @item.errors, status: :unprocessable_entity }
@@ -26,22 +23,21 @@ class ItemsController < ApplicationController
   end
 
   def update
-    respond_to do |format|
-      if @item.update(item_params)
-        render json: @item
-        format.json { render :show, status: :ok, location: @item }
-      else
-        format.json { render json: @item.errors, status: :unprocessable_entity }
-      end
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+      render json: @item
+      format.json { render :show, status: :ok, location: @item }
+    else
+      format.json { render json: @item.errors, status: :unprocessable_entity }
     end
   end
 
-  # DELETE /items/1
-  # DELETE /items/1.json
   def destroy
-    @item.destroy
-    respond_to do |format|
-      format.json { head :no_content }
+    @item = Item.find(params[:id])
+    if @item.destroy
+      respond_to do |format|
+        format.json { head :no_content }
+      end
     end
   end
 
@@ -49,10 +45,5 @@ class ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(:name, :description, :price, :photo, :user_id, :specs)
-  end
-
-  # Use callbacks to share common setup or constraints between actions.
-  def set_item
-    @item = Item.find
   end
 end
