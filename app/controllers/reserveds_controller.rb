@@ -20,7 +20,7 @@ class ReservedsController < ApplicationController
   def create
     @reserved = Reserved.new(reserved_params)
     if @reserved.save
-      render json: @reserved
+      render json: { success: 'Success', message: 'reservation Added Successfully', data: @reserved, status: :created }
     else
       render json: @reserved.errors, status: :unprocessable_entity
     end
@@ -29,19 +29,20 @@ class ReservedsController < ApplicationController
   def update
     @reserved = Reserved.find(params[:id])
     if @reserved.update(reserved_params)
-      render json: @reserved
-      format.json { render :show, status: :ok, location: @reserved }
+      render json: { success: 'Success', message: 'reservation updated Successfully', data: @reserved,
+                     status: :updated }
+
     else
       render json: @reserved.errors, status: :unprocessable_entity
     end
   end
 
-  def destroy 
+  def destroy
     @reserved = Reserved.find(params[:id])
     if @reserved.destroy
-      respond_to do |format|
-        format.json { head :no_content }
-      end
+      render json: { success: 'Success', message: 'reservation deleted Successfully', data: @reserved,
+                     status: :deleted }
+
     end
   end
 

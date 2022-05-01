@@ -21,7 +21,7 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
 
     if @item.save
-      format.json { render :show, status: :created, location: @item }
+      render json: { success: 'Success', message: 'item Added Successfully', data: @item, status: :created }
     else
       format.json { render json: @item.errors, status: :unprocessable_entity }
     end
@@ -30,8 +30,7 @@ class ItemsController < ApplicationController
   def update
     @item = Item.find(params[:id])
     if @item.update(item_params)
-      render json: @item
-      format.json { render :show, status: :ok, location: @item }
+      render json: { success: 'Success', message: 'item updated Successfully', data: @item, status: :updated }
     else
       format.json { render json: @item.errors, status: :unprocessable_entity }
     end
@@ -40,9 +39,7 @@ class ItemsController < ApplicationController
   def destroy
     @item = Item.find(params[:id])
     if @item.destroy
-      respond_to do |format|
-        format.json { head :no_content }
-      end
+      render json: { success: 'Success', message: 'item deleted Successfully', data: @item, status: :deleted }
     end
   end
 
