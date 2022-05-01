@@ -1,4 +1,4 @@
-class ReservedsController < ApplicationController
+class Api::V1::ReservedsController < ApplicationController
   def index
     @reserveds = Reserved.all
     render json: @reserveds
@@ -20,7 +20,8 @@ class ReservedsController < ApplicationController
   def create
     @reserved = Reserved.new(reserved_params)
     if @reserved.save
-      render json: { success: 'Success', message: 'reservation Added Successfully', data: @reserved, status: :created }
+      render json: { success: 'Success', message: 'reservation Added Successfully', data: @reserved,
+                     status: :created }
     else
       render json: @reserved.errors, status: :unprocessable_entity
     end
