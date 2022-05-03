@@ -10,6 +10,7 @@ module Speedy
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
+<<<<<<< HEAD
 
 
     # This also configures session_options for use below
@@ -19,6 +20,9 @@ module Speedy
     config.middleware.use ActionDispatch::Cookies
 
     config.middleware.use config.session_store, config.session_options
+=======
+    # config.factory_bot.definition_file_paths = ["custom/factories"]
+>>>>>>> ae446de83a0b345f59f4b981d3e78b6c80a0aaca
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
