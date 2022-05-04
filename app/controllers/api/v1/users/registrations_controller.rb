@@ -20,4 +20,11 @@ class Api::V1::Users::RegistrationsController < Devise::RegistrationsController
   def register_failed
     render json: { message: 'Something went wrong.' }, status: :unprocessable_entity
   end
+
+  protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_in, keys: [:login])
+    devise_parameter_sanitizer.permit(:sign_up, keys: %i[username email])
+  end
 end
