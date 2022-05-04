@@ -60,3 +60,7 @@ Style/HashTransformValues:
   Enabled: false
 Style/GuardClause:
   Enabled: false
+Naming/AccessorMethodName:
+  Enabled: false
+Layout/EndOfLine:
+  Enabled: false
