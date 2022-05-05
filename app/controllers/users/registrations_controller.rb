@@ -3,16 +3,25 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   private
 
+
+
+
+
+
   def respond_with(resource, _opts = {})
-    if resource.persisted?
+    @user.update(username: params[:user][:username])
+
+
+    if resource.errors.empty?
       render json: {
-        status: { code: 200, message: 'Signed up sucessfully.' },
+        status: { code: 200, message: 'User created sucessfully.' },
         data: UserSerializer.new(resource).serializable_hash[:data][:attributes]
-      }
+      }, status: :ok
     else
       render json: {
-        status: { message: "User couldn't be created successfully. #{resource.errors.full_messages.to_sentence}" }
-      }, status: :unprocessable_entity
+        status: { code: 400, message: 'User not created.' },
+        errors: resource.errors
+      }, status: :bad_request
     end
   end
   # before_action :configure_sign_up_params, only: [:create]
