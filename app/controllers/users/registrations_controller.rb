@@ -3,14 +3,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   private
 
-
-
-
-
-
   def respond_with(resource, _opts = {})
     @user.update(username: params[:user][:username])
-
 
     if resource.errors.empty?
       render json: {

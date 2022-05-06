@@ -17,8 +17,9 @@ class Users::SessionsController < Devise::SessionsController
       }, status: :ok
     else
       render json: {
-        status: { code: 200, message: 'Logged out sucessfully.' }
-      }, status: :ok
+        status: { code: 400, message: 'User not authorized.' }
+        # errors: resource.errors
+      }, status: :bad_request
     end
   end
   # before_action :configure_sign_in_params, only: [:create]
