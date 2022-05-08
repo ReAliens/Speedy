@@ -8,6 +8,11 @@ Bundler.require(*Rails.groups)
 
 module Speedy
   class Application < Rails::Application
+    config.session_store :cookie_store, key: '_interslice_session'
+
+    config.middleware.use ActionDispatch::Cookies
+
+    config.middleware.use config.session_store, config.session_options
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
     # config.factory_bot.definition_file_paths = ["custom/factories"]
