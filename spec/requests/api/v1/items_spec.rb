@@ -1,55 +1,120 @@
-require 'rails_helper'
+require 'swagger_helper'
 
-describe 'Items API', type: :request do
-  describe 'GET /items' do
-    it 'returns all items' do
-      user = FactoryBot.create(:user, name: 'Ahmed', email: 'ahmed@gmail.com', password: '123456789')
-      FactoryBot.create(:item, name: 'car', photo: 'new photo', description: 'description', specs: 'specs', price: 20,
-                               user_id: user.id)
+RSpec.describe 'api/v1/items', type: :request do
 
-      get '/api/v1/items'
+  path '/api/v1/items' do
 
-      expect(response).to have_http_status(:success)
-      expect(JSON.parse(response.body).size).to eq(1)
+    get('list items') do
+      response(200, 'successful') do
+
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
+    end
+
+    post('create item') do
+      response(200, 'successful') do
+
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
     end
   end
 
-  describe 'GET /items/:id' do
-    it 'returns one item' do
-      user = FactoryBot.create(:user, name: 'Ahmed', email: 'ahmed1@gmail.com', password: '123456789')
-      item = FactoryBot.create(:item, name: 'car', photo: 'new photo', description: 'description',
-                                      specs: 'specs', price: 20, user_id: user.id)
+  path '/api/v1/items/{id}/edit' do
+    # You'll want to customize the parameter types...
+    parameter name: 'id', in: :path, type: :string, description: 'id'
 
-      get "/api/v1/items/#{item.id}"
+    get('edit item') do
+      response(200, 'successful') do
+        let(:id) { '123' }
 
-      expect(response).to have_http_status(:success)
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
     end
   end
 
-  describe 'POST /items' do
-    it 'create new item' do
-      user = FactoryBot.create(:user, name: 'Ahmed', email: 'ahmed1@gmail.com', password: '123456789')
+  path '/api/v1/items/{id}' do
+    # You'll want to customize the parameter types...
+    parameter name: 'id', in: :path, type: :string, description: 'id'
 
-      expect do
-        post '/api/v1/items', params: { item: { name: 'car', photo: 'new photo', description: 'description',
-                                                specs: 'specs', price: 20, user_id: user.id } }
-      end.to change { Item.count }.from(0).to(1)
+    get('show item') do
+      response(200, 'successful') do
+        let(:id) { '123' }
 
-      expect(response).to have_http_status(:success)
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
     end
-  end
 
-  describe 'DELETE /items/:id' do
-    it 'delete one item' do
-      user = FactoryBot.create(:user, name: 'Ahmed', email: 'ahmed1@gmail.com', password: '123456789')
-      item1 = FactoryBot.create(:item, name: 'car', photo: 'new photo', description: 'description',
-                                       specs: 'specs', price: 20, user_id: user.id)
+    patch('update item') do
+      response(200, 'successful') do
+        let(:id) { '123' }
 
-      expect do
-        delete "/api/v1/items/#{item1.id}"
-      end.to change { Item.count }.from(1).to(0)
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
+    end
 
-      expect(response).to have_http_status(:success)
+    put('update item') do
+      response(200, 'successful') do
+        let(:id) { '123' }
+
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
+    end
+
+    delete('delete item') do
+      response(200, 'successful') do
+        let(:id) { '123' }
+
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
     end
   end
 end

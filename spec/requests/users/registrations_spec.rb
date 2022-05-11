@@ -1,10 +1,10 @@
 require 'swagger_helper'
 
-RSpec.describe 'api/v1/reserveds', type: :request do
+RSpec.describe 'users/registrations', type: :request do
 
-  path '/api/v1/reserveds' do
+  path '/signup/cancel' do
 
-    get('list reserveds') do
+    get('cancel registration') do
       response(200, 'successful') do
 
         after do |example|
@@ -19,13 +19,10 @@ RSpec.describe 'api/v1/reserveds', type: :request do
     end
   end
 
-  path '/api/v1/items/{item_id}/reserveds' do
-    # You'll want to customize the parameter types...
-    parameter name: 'item_id', in: :path, type: :string, description: 'item_id'
+  path '/signup/sign_up' do
 
-    post('create reserved') do
+    get('new registration') do
       response(200, 'successful') do
-        let(:item_id) { '123' }
 
         after do |example|
           example.metadata[:response][:content] = {
@@ -39,15 +36,10 @@ RSpec.describe 'api/v1/reserveds', type: :request do
     end
   end
 
-  path '/api/v1/items/{item_id}/reserveds/{id}/edit' do
-    # You'll want to customize the parameter types...
-    parameter name: 'item_id', in: :path, type: :string, description: 'item_id'
-    parameter name: 'id', in: :path, type: :string, description: 'id'
+  path '/signup/edit' do
 
-    get('edit reserved') do
+    get('edit registration') do
       response(200, 'successful') do
-        let(:item_id) { '123' }
-        let(:id) { '123' }
 
         after do |example|
           example.metadata[:response][:content] = {
@@ -61,15 +53,10 @@ RSpec.describe 'api/v1/reserveds', type: :request do
     end
   end
 
-  path '/api/v1/items/{item_id}/reserveds/{id}' do
-    # You'll want to customize the parameter types...
-    parameter name: 'item_id', in: :path, type: :string, description: 'item_id'
-    parameter name: 'id', in: :path, type: :string, description: 'id'
+  path '/signup' do
 
-    get('show reserved') do
+    patch('update registration') do
       response(200, 'successful') do
-        let(:item_id) { '123' }
-        let(:id) { '123' }
 
         after do |example|
           example.metadata[:response][:content] = {
@@ -82,10 +69,8 @@ RSpec.describe 'api/v1/reserveds', type: :request do
       end
     end
 
-    patch('update reserved') do
+    put('update registration') do
       response(200, 'successful') do
-        let(:item_id) { '123' }
-        let(:id) { '123' }
 
         after do |example|
           example.metadata[:response][:content] = {
@@ -98,10 +83,8 @@ RSpec.describe 'api/v1/reserveds', type: :request do
       end
     end
 
-    put('update reserved') do
+    delete('delete registration') do
       response(200, 'successful') do
-        let(:item_id) { '123' }
-        let(:id) { '123' }
 
         after do |example|
           example.metadata[:response][:content] = {
@@ -114,10 +97,8 @@ RSpec.describe 'api/v1/reserveds', type: :request do
       end
     end
 
-    delete('delete reserved') do
+    post('create registration') do
       response(200, 'successful') do
-        let(:item_id) { '123' }
-        let(:id) { '123' }
 
         after do |example|
           example.metadata[:response][:content] = {
