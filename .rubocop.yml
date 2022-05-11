@@ -60,3 +60,5 @@ Style/HashTransformValues:
   Enabled: false
 Style/GuardClause:
   Enabled: false
+Lint/EmptyBlock:
+  Enabled: false

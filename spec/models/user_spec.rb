@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  user = User.new(name: 'Ahmed')
+  user = User.new(name: 'Ahmed', email: 'ahmedreda@gmail.com')
   before { user.save }
 
   it 'should have many items' do
