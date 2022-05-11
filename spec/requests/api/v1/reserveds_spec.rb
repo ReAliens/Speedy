@@ -50,7 +50,7 @@ describe 'reserveds API', type: :request do
     it 'delete one reserved item' do
       user = FactoryBot.create(:user, name: 'Ahmed', email: 'ahmed1@gmail.com', password: '123456789')
       item = FactoryBot.create(:item, name: 'car', photo: 'new photo', description: 'description',
-                                       specs: 'specs', price: 20, user_id: user.id)
+                                      specs: 'specs', price: 20, user_id: user.id)
       reserved_item = FactoryBot.create(:reserved, name: 'car', city: 'new city', started_at: '2022-05-20',
                                                    ended_at: '2022-5-30', user_id: user.id, item_id: item.id)
 
