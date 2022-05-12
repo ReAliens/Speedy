@@ -13,24 +13,11 @@ class Api::V1::ItemsController < ApplicationController
     @item = Item.new
   end
 
-  def edit
-    @item = Item.find(params[:id])
-  end
-
   def create
     @item = Item.new(item_params)
 
     if @item.save
       render json: { success: 'Success', message: 'item Added Successfully', data: @item, status: :created }
-    else
-      format.json { render json: @item.errors, status: :unprocessable_entity }
-    end
-  end
-
-  def update
-    @item = Item.find(params[:id])
-    if @item.update(item_params)
-      render json: { success: 'Success', message: 'item updated Successfully', data: @item, status: :updated }
     else
       format.json { render json: @item.errors, status: :unprocessable_entity }
     end

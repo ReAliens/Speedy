@@ -13,26 +13,11 @@ class Api::V1::ReservedsController < ApplicationController
     @reserved = Reserved.new
   end
 
-  def edit
-    @reserved = Reserved.find(params[:id])
-  end
-
   def create
     @reserved = Reserved.new(reserved_params)
     if @reserved.save
       render json: { success: 'Success', message: 'reservation Added Successfully', data: @reserved,
                      status: :created }
-    else
-      render json: @reserved.errors, status: :unprocessable_entity
-    end
-  end
-
-  def update
-    @reserved = Reserved.find(params[:id])
-    if @reserved.update(reserved_params)
-      render json: { success: 'Success', message: 'reservation updated Successfully', data: @reserved,
-                     status: :updated }
-
     else
       render json: @reserved.errors, status: :unprocessable_entity
     end
