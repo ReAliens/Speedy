@@ -48,6 +48,13 @@ bin/rails db:setup
 rspec spec
 ```
 
+# Front-end Repo
+
+```
+git clone git@github.com:ReAliens/speedy-FE.git
+
+```
+
 # Prerequisites
 
 - Ruby 
@@ -57,8 +64,22 @@ rspec spec
 
 👤 **Ahmed**
 * GitHub: [github](https://github.com/ReAliens)
-* LinkedIn: [@linkedin](https://www.linkedin.com/in/armali/)
+* LinkedIn: [linkedin](https://www.linkedin.com/in/armali/)
 
+👤 **Mucyo**
+
+- GitHub: [github](https://github.com/mucyosoda)
+- LinkedIn: [linkedin](https://www.linkedin.com/in/mucyoclaude)
+
+👤 **Mahbub**
+
+- GitHub: [github](https://github.com/mahbubul14)
+- LinkedIn: [linkedin](https://www.linkedin.com/in/mahbubul14/)
+
+👤 **Yahya**
+
+- GitHub: [linkedin](https://www.linkedin.com/in/yahya-el-ganayni-a456115b/)
+- LinkedIn: [github](https://github.com/yahyaelganyni1)
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome!
